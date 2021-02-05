@@ -24,8 +24,8 @@ services:
         UID: $U_ID
     volumes:
       - ./:/appdata/www
-#    env_file:
-#      - .env
+    env_file:
+      - .env
     networks:
       - codenip-symfony-requests-network
 
