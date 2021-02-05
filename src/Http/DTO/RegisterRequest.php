@@ -29,11 +29,9 @@ class RegisterRequest implements RequestDTO
 
     public function __construct(Request $request)
     {
-        $data = \json_decode($request->getContent(), true);
-
-        $this->name = $data['name'] ?? null;
-        $this->email = $data['email'] ?? null;
-        $this->password = $data['password'] ?? null;
+        $this->name = $request->request->get('name');
+        $this->email = $request->request->get('email');
+        $this->password = $request->request->get('password');
     }
 
     public function getName(): ?string
