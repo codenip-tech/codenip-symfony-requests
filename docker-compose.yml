@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+  codenip-symfony-requests-web:
+    container_name: codenip-symfony-requests-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - 2000:80
+    volumes:
+      - ./public:/appdata/www/public
+    depends_on:
+      - codenip-symfony-requests-be
+    networks:
+      - codenip-symfony-requests-network
+
+  codenip-symfony-requests-be:
+    container_name: codenip-symfony-requests-be
+    build:
+      context: docker/php
+      args:
+        UID: $U_ID
+    volumes:
+      - ./:/appdata/www
+    env_file:
+      - .env
+    networks:
+      - codenip-symfony-requests-network
+
+networks:
+  codenip-symfony-requests-network:
+    external: true
