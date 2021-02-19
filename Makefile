@@ -54,7 +54,7 @@ code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 
 tests: ## Run tests
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bin/phpunit
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} bin/phpunit
 
 .PHONY: tests
 
