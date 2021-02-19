@@ -13,6 +13,6 @@ jobs:
           # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
       - name: Prepare containers
-        run: make run && make prepare
+        run: make start && make prepare
       - name: Run tests
         run: make tests
