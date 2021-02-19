@@ -41,7 +41,7 @@ prepare: ## Runs backend commands
 	$(MAKE) composer-install
 # Backend commands
 composer-install: ## Installs composer dependencies
-	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} composer install --no-interaction
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} composer install --no-interaction
 
 be-logs: ## Tails the Symfony dev log
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} tail -f var/log/dev.log
