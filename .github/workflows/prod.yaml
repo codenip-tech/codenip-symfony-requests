@@ -24,5 +24,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /home/twitch/app
+            git pull
             make prepare
             make restart
