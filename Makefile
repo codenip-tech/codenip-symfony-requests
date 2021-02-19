@@ -41,7 +41,7 @@ prepare: ## Runs backend commands
 	$(MAKE) composer-install
 # Backend commands
 composer-install: ## Installs composer dependencies
-	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} composer install --no-interaction
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} composer install --no-interaction
 
 be-logs: ## Tails the Symfony dev log
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} tail -f var/log/dev.log
@@ -54,7 +54,7 @@ code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 
 tests: ## Run tests
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bin/phpunit
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} bin/phpunit
 
 .PHONY: tests
 
