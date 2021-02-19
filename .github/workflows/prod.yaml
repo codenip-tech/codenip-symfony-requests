@@ -1,0 +1,27 @@
+name: Deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches:
+      - 005/github-actions
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  deploy:
+    # Name the Job
+    name: Deploy
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            make prepare
+            make restart
