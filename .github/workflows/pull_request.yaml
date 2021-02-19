@@ -3,16 +3,15 @@ on:
     branches:
       - main
 jobs:
-  unit-test:
-    name: Unit tests
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: docker-compose -f docker-compose.yml.dist pull
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-          # Ignore the failure of a step and avoid terminating the job.
-        continue-on-error: true
-      - name: Prepare containers
-        run: make start && make prepare
-      - name: Run tests
-        run: make tests
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: cd /home/app && make prepare
