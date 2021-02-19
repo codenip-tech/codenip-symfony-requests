@@ -14,3 +14,9 @@
 docker-compose.yml
 .idea
 ###< Other files and folders ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

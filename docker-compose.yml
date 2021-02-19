@@ -24,8 +24,15 @@ services:
         UID: $U_ID
     volumes:
       - ./:/appdata/www
-    env_file:
-      - .env
+    ###> XDEBUG 3 ###
+    # Use your client IP here
+    # Linux: run "ip a | grep docker0"
+    # Windows (with WSL2): Run "grep nameserver /etc/resolv.conf  | cut -d ' ' -f2"
+    # MacOS: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=codenip-symfony-requests
     networks:
       - codenip-symfony-requests-network
 
